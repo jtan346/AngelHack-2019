@@ -12,5 +12,6 @@ urlpatterns = [
     path('foundperson', views.found_person),
     path('notifications', views.notifications),
     path('register', views.registerview.as_view()),
-    path('logout', views.logoutview.as_view())
+    path('logout', views.logoutview.as_view()),
+    path('test', views.testing),
 ]

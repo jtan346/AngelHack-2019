@@ -1,7 +1,7 @@
 from .models import *
 from .serializers import *
 
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions, status
@@ -65,3 +65,36 @@ def notifications(request):
 
 def match(request):
     pass
+
+import boto3
+import os
+
+
+def testing(request):
+    s3 = boto3.resource('s3')
+    my_bucket = s3.Bucket('angelhackimages-dev')
+    this_region = 'ap-southeast-1'
+    rekognition = boto3.client('rekognition', this_region)
+
+    for bucket in s3.buckets.all():
+        print(bucket)
+
+    response = rekognition.compare_faces(
+        SimilarityThreshold=10,
+        SourceImage={
+            'S3Object': {
+                'Bucket': 'angelhackimages-dev',
+                'Name': 'image2.png',
+            },
+        },
+        TargetImage={
+            'S3Object': {
+                'Bucket': 'angelhackimages-dev',
+                'Name': 'image3.png',
+            },
+        },
+    )
+
+    print(response)
+
+    return HttpResponse('Pass')
