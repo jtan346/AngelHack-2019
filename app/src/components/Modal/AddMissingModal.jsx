@@ -45,8 +45,9 @@ const AddMissingModal = props => {
       //send to server
 
       //on success upload files
-      const filepath = 'username/missingpersonid/image2.png';
+      const filepath = `missing/${upload.name}`;
       const file = await Storage.put(filepath, upload.file, {
+        level: 'private',
         contentType: 'image/png'
       });
       console.log(file);

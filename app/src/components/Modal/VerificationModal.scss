@@ -1,0 +1,19 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.verification-imagebox {
+  display: flex;
+}
+.verification-image-container {
+  flex: 1;
+}
+
+.verification-image {
+  margin: auto;
+}
+
+.verification-desc {
+  text-align: center;
+  font-size: 18px;
+  padding: 10px;
+}
