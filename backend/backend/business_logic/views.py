@@ -71,30 +71,27 @@ import os
 
 
 def testing(request):
-    s3 = boto3.resource('s3')
-    my_bucket = s3.Bucket('angelhackimages-dev')
+    # s3 = boto3.resource('s3')
     this_region = 'ap-southeast-1'
     rekognition = boto3.client('rekognition', this_region)
 
-    for bucket in s3.buckets.all():
-        print(bucket)
 
     response = rekognition.compare_faces(
         SimilarityThreshold=10,
         SourceImage={
             'S3Object': {
                 'Bucket': 'angelhackimages-dev',
-                'Name': 'image2.png',
+                'Name': 'public/missing/pizza1.png',
             },
         },
         TargetImage={
             'S3Object': {
                 'Bucket': 'angelhackimages-dev',
-                'Name': 'image3.png',
+                'Name': 'public/missing/pizza2.png',
             },
         },
     )
 
-    print(response)
+    print(response['FaceMatches'][0]['Similarity'])
 
-    return HttpResponse('Pass')
+    return HttpResponse(response['FaceMatches'][0]['Similarity'])
