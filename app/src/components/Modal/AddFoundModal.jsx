@@ -55,14 +55,11 @@ const AddFoundModal = props => {
 
   return (
     <ModalComponent title='Add Found Person' isOpen={props.isOpen} onClose={props.onClose}>
-      <Segment stacked textAlign='center'>
+      <Segment stacked textAlign='left'>
         <PhotoPicker preview onPick={data => setUpload(data)} />
         <br />
-        <FormInput field={NAME} form={form} placeholder='Name' />
-        <br />
-        <FormInput field={AGE} form={form} placeholder='Age' />
-        <br />
-        <FormInput field={LOCATION} form={form} placeholder='Location' />
+        <label for="desc">Description <span class="desc-span">(Optional)</span></label>
+        <textarea name="message"></textarea>
         <br />
         <Button color='teal' fluid size='large' onClick={onSubmit}>
           Submit Found Person
