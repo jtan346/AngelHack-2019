@@ -1,2 +1,2 @@
-aws configure set aws_access_key_id AKIAT4J7CMPGVFH3RBGX
-aws configure set aws_secret_access_key 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
+aws configure set aws_access_key_id ${aws_id}
+aws configure set aws_secret_access_key ${aws_key}
