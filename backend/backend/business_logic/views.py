@@ -82,13 +82,13 @@ def testing(request):
         SourceImage={
             'S3Object': {
                 'Bucket': 'angelhackimages-dev',
-                'Name': 'public/missing/15624231784037885658086915518324.jpg',
+                'Name': 'public/missing/pizza1.png',
             },
         },
         TargetImage={
             'S3Object': {
                 'Bucket': 'angelhackimages-dev',
-                'Name': 'public/missing/15624103511747964560133694515418.jpg',
+                'Name': 'public/missing/pizza2.png',
             },
         },
     )
