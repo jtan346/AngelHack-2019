@@ -8,29 +8,8 @@ import FormInput from '../Form/Form.Input';
 import { PhotoPicker } from 'aws-amplify-react';
 import './AddFoundModal.scss';
 
-const NAME = 'name';
-const AGE = 'age';
-const LOCATION = 'location';
-const formSchema = {
-  [NAME]: {
-    type: 'text',
-    constraints: [['isRequired', 'Username cannot be empty!']]
-  },
-  [AGE]: {
-    type: 'text',
-    constraints: [['isRequired', 'Age cannot be empty!']]
-  },
-  [LOCATION]: {
-    type: 'text',
-    constraints: [['isRequired', 'Location cannot be empty!']]
-  }
-}
-
 const AddFoundModal = props => {
   const form = useForm();
-  useEffect(() => {
-    form.setupFormFields(formSchema);
-  }, []);
 
   const [upload, setUpload] = useState();
 

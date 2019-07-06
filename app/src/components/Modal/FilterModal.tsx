@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ModalComponent from './Modal';
 import { Form, Segment, Dropdown, Button } from 'semantic-ui-react'
 import './FilterModal.scss';
+import useForm from '../Form/useForm';
+import FormInput from '../Form/Form.Input';
 
 interface IProps extends React.Props<{}> {
   isOpen: boolean;
@@ -13,11 +15,26 @@ const options = [
   { key: '1', text: 'My', value: 'My' }
 ]
 
-const onSubmit = () => {
-
+const COUNTRY = 'country';
+const formSchema: any = {
+  [COUNTRY]: {
+    type: 'text',
+    constraints: [['isRequired', 'Country cannot be empty!']]
+  }
 }
 
+
+
 const FilterModal: React.SFC<IProps> = (props: IProps) => {
+  const form = useForm();
+  useEffect(() => {
+    form.setupFormFields(formSchema);
+  }, []);
+
+  const onSubmit = () => {
+    props.onClose();
+  }
+
   return (
     <ModalComponent title='Filter' isOpen={props.isOpen} onClose={props.onClose}>
       <Form size='small'>
@@ -25,8 +42,10 @@ const FilterModal: React.SFC<IProps> = (props: IProps) => {
           <div>
             Showing <Dropdown downward floating inline options={options} defaultValue='All' /> Posts
           </div>
-          <br/>
-          <Button color='teal' size='small' onClick={onSubmit}>
+          <br />
+          <FormInput field={COUNTRY} form={form} placeholder='Last Known Position' />
+          <br />
+          <Button color='teal' fliud size='large' onClick={onSubmit}>
             Apply
           </Button>
         </Segment>
