@@ -14,10 +14,7 @@ interface IFormInputProps {
 }
 
 const FormInput = (props: IFormInputProps): JSX.Element => {
-  console.log('FormInput', props.field);
-
   const formField = props.form.getField(props.field);
-  console.log(formField.error);
   const key = formField ? formField.key : '';
   let id = key + '_form_input';
   // console.log(formField);

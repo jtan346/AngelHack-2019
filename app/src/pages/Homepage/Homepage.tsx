@@ -90,11 +90,11 @@ const Homepage: React.SFC<{}> = () => {
 
   const openFilterHandler = () => {
     setOpenFilter(true);
-  }
+  };
 
   const closeFilterHandler = () => {
     setOpenFilter(false);
-  }
+  };
 
   let persons = personsState.map((person: any, index: any) => {
     return (
@@ -112,20 +112,18 @@ const Homepage: React.SFC<{}> = () => {
     );
   });
 
-  const options = [
-    { key: '0', text: 'All', value: 'All' },
-    { key: '1', text: 'My', value: 'My' }
-  ]
+  const options = [{ key: '0', text: 'All', value: 'All' }, { key: '1', text: 'My', value: 'My' }];
 
   return (
     <div>
       <Grid>
         <Grid.Row columns={16}>
           <Grid.Column mobile={16} computer={16}>
-            <div className="title-container">
+            <div className='title-container'>
               <h2 className='title'>Missing People Bulletin</h2>
-              <div className="filter">
-                <Icon name='filter'/>Showing <Dropdown downward floating inline options={options} defaultValue='All' /> Posts
+              <div className='filter'>
+                <Icon name='filter' />
+                Showing <Dropdown downward floating inline options={options} defaultValue='All' /> Posts
               </div>
             </div>
             <div className='personcard-collection'>{persons}</div>

@@ -7,10 +7,7 @@ import { Button, Segment } from 'semantic-ui-react';
 import FormInput from '../Form/Form.Input';
 import { PhotoPicker } from 'aws-amplify-react';
 import './AddMissingModal.scss';
-// interface IProps extends React.Props<{}> {
-//   isOpen: boolean;
-//   onClose: () => void;
-// }
+import api from '../../api';
 
 const NAME = 'name';
 const AGE = 'age';
@@ -40,40 +37,43 @@ const AddMissingModal = props => {
   const onSubmit = async () => {
     // if (await form.validateAllFields()) {
     const data = form.getFormData();
-    console.log(upload);
+    console.log(data);
     try {
-      //send to server
-
       //on success upload files
       const filepath = `missing/${upload.name}`;
       const file = await Storage.put(filepath, upload.file, {
-        level: 'private',
+        level: 'public',
         contentType: 'image/png'
       });
-      console.log(file);
+
+      //send to server
+      await api.updateProfile({
+        image: `public/${filepath}`
+      });
     } catch (error) {
       console.log(error);
     }
     props.onClose();
-    // }
   };
 
   return (
-    <ModalComponent title='Add Missing Person' isOpen={props.isOpen} onClose={props.onClose}>
-      <Segment stacked textAlign='center'>
-        <PhotoPicker preview onPick={data => setUpload(data)} />
-        <br />
-        <FormInput field={NAME} form={form} placeholder='Name' />
-        <br />
-        <FormInput field={AGE} form={form} placeholder='Age' />
-        <br />
-        <FormInput field={LASTKNOWN} form={form} placeholder='Last Known Location' />
-        <br />
-        <Button color='teal' fluid size='large' onClick={onSubmit}>
-          Submit Missing Person
-        </Button>
-      </Segment>
-    </ModalComponent>
+    <>
+      <ModalComponent title='Update Profile' isOpen={props.isOpen} onClose={props.onClose}>
+        <Segment stacked textAlign='center'>
+          <PhotoPicker preview onPick={data => setUpload(data)} />
+          <br />
+          <FormInput field={NAME} form={form} placeholder='Name' />
+          <br />
+          <FormInput field={AGE} form={form} placeholder='Age' />
+          <br />
+          <FormInput field={LASTKNOWN} form={form} placeholder='Last Known Location' />
+          <br />
+          <Button color='teal' fluid size='large' onClick={onSubmit}>
+            Update
+          </Button>
+        </Segment>
+      </ModalComponent>
+    </>
   );
 };
 

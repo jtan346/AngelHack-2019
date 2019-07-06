@@ -17,35 +17,20 @@ interface MobileProps extends React.Props<{}> {
   missing: () => void;
   found: () => void;
   visible: boolean;
-  hide: () => void
+  hide: () => void;
 }
 
 const MobileSidebar: React.SFC<MobileProps> = (props: MobileProps) => {
   return (
-    <Sidebar
-          as={Menu}
-          animation='overlay'
-          icon='labeled'
-          onHide={props.hide}
-          vertical
-          visible={props.visible}
-        >
-          <Menu.Item>FindMyBuddy</Menu.Item>
+    <Sidebar as={Menu} animation='overlay' icon='labeled' onHide={props.hide} vertical visible={props.visible}>
+      <Menu.Item>FindMyBuddy</Menu.Item>
 
-          <Menu.Item
-            onClick={props.missing}
-          >
-            Add Missing Person
-          </Menu.Item>
+      <Menu.Item onClick={props.missing}>Add Missing Person</Menu.Item>
 
-          <Menu.Item
-            onClick={props.found}
-          >
-            Add Found Person
-        </Menu.Item>
-      </Sidebar>
+      <Menu.Item onClick={props.found}>Add Found Person</Menu.Item>
+    </Sidebar>
   );
-}
+};
 
 const App: React.FC = () => {
   let user = 'John';
@@ -53,10 +38,10 @@ const App: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const openSidebarHandler = () => {
     setVisible(true);
-  }
+  };
   const hideSidebarHandler = () => {
     setVisible(false);
-  }
+  };
 
   const [openRegister, setOpenRegister] = useState(false);
   const openRegisterHandler = () => {
@@ -108,11 +93,13 @@ const App: React.FC = () => {
     <div className='App'>
       <Responsive {...Responsive.onlyMobile}>
         <Sidebar.Pushable as={Segment}>
-          <MobileSidebar found={openFoundHandler} missing={openMissingHandler} visible={visible} hide={hideSidebarHandler}/>
-          <Sidebar.Pusher
-            dimmed={visible}
-            style={{ minHeight: "100vh" }}
-          >
+          <MobileSidebar
+            found={openFoundHandler}
+            missing={openMissingHandler}
+            visible={visible}
+            hide={hideSidebarHandler}
+          />
+          <Sidebar.Pusher dimmed={visible} style={{ minHeight: '100vh' }}>
             <Segment basic>
               <Menu fixed='top'>
                 <Menu.Item onClick={openSidebarHandler}>
@@ -145,7 +132,13 @@ const App: React.FC = () => {
       </Responsive>
 
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-        <Header found={openFoundHandler} missing={openMissingHandler} login={openLoginHandler} register={openRegisterHandler} user={user} />
+        <Header
+          found={openFoundHandler}
+          missing={openMissingHandler}
+          login={openLoginHandler}
+          register={openRegisterHandler}
+          user={user}
+        />
         <Router>
           <Switch>
             <Route path='/' exact render={() => <Homepage />} />

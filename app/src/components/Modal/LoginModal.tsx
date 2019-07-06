@@ -32,9 +32,13 @@ const LoginModal: React.SFC<IProps> = (props: IProps) => {
   }, []);
   const onSubmit = async () => {
     // if (await form.validateAllFields()) {
-    const data = form.getFormData();
+    const data = {
+      username: form.getField(USERNAME).value,
+      password: form.getField(PASSWORD).value
+    };
+
     try {
-      const response = await api.registerUser(data);
+      const response = await api.login(data);
       document.cookie = 'token=republicofpankaj1994;';
       props.onClose();
     } catch (error) {

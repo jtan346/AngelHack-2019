@@ -4,33 +4,21 @@ import './Notifications.scss';
 import VerificationModal from '../Modal/VerificationModal';
 
 export interface INotification {
-  foundId: string;
-  missingpersonId: string;
-  missingpersonName: string;
   missingPersonImage: string;
   foundPersonImage: string;
-  foundPersonDescription: string;
-  finderName: string;
-  finderContact: string;
 }
 const Notifications: React.SFC<{}> = () => {
   let notifications: INotification[] = [
     {
-      foundId: '1',
-      missingpersonId: '1',
-      missingpersonName: 'Seng Cheong',
       missingPersonImage: 'https://react.semantic-ui.com/images/avatar/large/elliot.jpg',
-      foundPersonImage: 'https://react.semantic-ui.com/images/avatar/large/steve.jpg',
-      foundPersonDescription: 'Found in a German Hospital near Hamburg. Concussion but in stable condition.',
-      finderName: 'Daniel',
-      finderContact: '84481234'
+      foundPersonImage: 'https://react.semantic-ui.com/images/avatar/large/steve.jpg'
     }
   ];
 
   let push = notifications.map((notif: INotification, index: number) => ({
     key: index,
-    text: `Potential match for ${notif.missingpersonName}`,
-    value: `Potential match for ${notif.missingpersonName}`,
+    text: `Potential match for`,
+    value: `Potential match for `,
     image: { avatar: true, src: notif.foundPersonImage }
   }));
   // let push = [
@@ -71,10 +59,7 @@ const Notifications: React.SFC<{}> = () => {
         </Dropdown>
         {push.length > 0 && <span className='notificationCount'>{push.length}</span>}
       </Menu.Item>
-      {/* missingUrl: string;
-  foundUrl: string;
-  foundDescription: string; */}
-      <VerificationModal
+      {/* <VerificationModal
         isOpen={openVerification}
         onClose={closeVerificationHandler}
         missingPersonImage={activeNotification.missingPersonImage}
@@ -82,7 +67,7 @@ const Notifications: React.SFC<{}> = () => {
         foundPersonDescription={activeNotification.foundPersonDescription}
         finderName={activeNotification.finderName}
         finderContact={activeNotification.finderContact}
-      />
+      /> */}
     </>
   );
 };
