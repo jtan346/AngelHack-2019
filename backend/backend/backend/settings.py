@@ -25,7 +25,7 @@ SECRET_KEY = 'i3sy39m%_!cx5mp=0f%#h^wkge)3tn32aur!4#ad7ngg@%z1v7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['angelhackfmb.mybluemix.net','0.0.0.0','127.0.0.1']
 
 
 # Application definition

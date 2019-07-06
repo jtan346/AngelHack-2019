@@ -8,6 +8,7 @@ import LoginModal from './components/Modal/LoginModal';
 import AddMissingModal from './components/Modal/AddMissingModal';
 import Header from './components/Header';
 import RegisterModal from './components/Modal/RegisterModal';
+import AddFoundModal from './components/Modal/AddFoundModal';
 Amplify.configure(awsconfig);
 
 const App: React.FC = () => {
@@ -37,9 +38,17 @@ const App: React.FC = () => {
     setOpenMissing(false);
   };
 
+  const [openFound, setOpenFound] = useState(false);
+  const openFoundHandler = () => {
+    setOpenFound(true);
+  };
+  const closeFoundHandler = () => {
+    setOpenFound(false);
+  };
+
   return (
     <div className='App'>
-      <Header missing={openMissingHandler} login={openLoginHandler} register={openRegisterHandler} user={user} />
+      <Header found={openFoundHandler} missing={openMissingHandler} login={openLoginHandler} register={openRegisterHandler} user={user} />
       <Router>
         <Switch>
           <Route path='/' exact render={() => <Homepage />} />
@@ -49,6 +58,7 @@ const App: React.FC = () => {
       <RegisterModal isOpen={openRegister} onClose={closeRegisterHandler} />
       <LoginModal isOpen={openLogin} onClose={closeLoginHandler} />
       <AddMissingModal isOpen={openMissing} onClose={closeMissingHandler} />
+      <AddFoundModal isOpen={openFound} onClose={closeFoundHandler} />
     </div>
   );
 };

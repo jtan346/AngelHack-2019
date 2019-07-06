@@ -3,7 +3,6 @@ import PersonCard from '../../components/PersonCard';
 import './Homepage.scss';
 import { Grid, Dropdown, Icon } from 'semantic-ui-react';
 import api from '../../api';
-import FilterModal from '../../components/Modal/FilterModal';
 
 export interface Person {
   id: number;
@@ -123,13 +122,16 @@ const Homepage: React.SFC<{}> = () => {
       <Grid>
         <Grid.Row columns={16}>
           <Grid.Column mobile={16} computer={16}>
-            <h2>Missing People Bulletin</h2>
-            <Icon name='filter' className='submission-filter' onClick={openFilterHandler}/>
+            <div className="title-container">
+              <h2 className='title'>Missing People Bulletin</h2>
+              <div className="filter">
+                <Icon name='filter'/>Showing <Dropdown downward floating inline options={options} defaultValue='All' /> Posts
+              </div>
+            </div>
             <div className='personcard-collection'>{persons}</div>
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <FilterModal isOpen={openFilter} onClose={closeFilterHandler} />
     </div>
   );
 };
