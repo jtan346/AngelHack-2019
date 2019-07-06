@@ -12,3 +12,8 @@ class Account(models.Model):
           MinValueValidator(80000000)
       ]
     )
+
+class InsuredPerson(models.Model):
+    name = models.CharField(max_length=50, null=True, blank=True)
+    # status
+
