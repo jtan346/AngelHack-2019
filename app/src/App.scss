@@ -1,13 +1,22 @@
+@import './assets/styles/mixins';
+@import './assets/styles/variables';
+
 .App {
   text-align: center;
 }
 
 header {
-  width: 100%;
   position: fixed;
-  z-index: 1;
+  width: 100%;
+  z-index: 1001;
 }
 
-.App > div {
-  padding-top: 6em;
+.ui.grid {
+  padding-top: 1em;
+}
+
+@include medium {
+  .ui.grid {
+    padding-top: 6em;
+  }
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, Input, Icon, Dropdown, Button } from 'semantic-ui-react';
+import { Menu, Input, Icon, Dropdown, Button, Sidebar, Responsive, Segment } from 'semantic-ui-react';
 import LoginModal from '../Modal/RegisterModal';
 import Notifications from '../../components/Notifications';
 import './Header.scss';
@@ -32,7 +32,7 @@ const HeaderComponent: React.SFC<IProps> = (props: IProps) => {
   return (
     <header>
       {isLoggedIn ? (
-        <Menu>
+        <Menu fixed='top'>
           <Menu.Item className='title' name='Find My Buddy' />
           <Notifications />
           <Menu.Menu position='right'>
@@ -54,8 +54,8 @@ const HeaderComponent: React.SFC<IProps> = (props: IProps) => {
             </Menu.Item>
           </Menu.Menu>
         </Menu>
-      ) : (
-        <Menu>
+       ) : (
+        <Menu fixed='top'>
           <Menu.Item className='title' name='Find My Buddy' />
           <Menu.Menu position='right'>
             <Menu.Item name='login' onClick={props.login} />
