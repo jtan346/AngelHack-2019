@@ -8,6 +8,7 @@ interface IProps extends React.Props<{}> {
   register: () => void;
   login: () => void;
   missing: () => void;
+  found: () => void;
   user?: string;
 }
 
@@ -35,6 +36,7 @@ const HeaderComponent: React.SFC<IProps> = (props: IProps) => {
           <Menu.Item className='title' name='Find My Buddy' />
           <Notifications />
           <Menu.Menu position='right'>
+            <Menu.Item name='Add Found Person' onClick={props.found} />
             <Menu.Item name='Add Missing Person' onClick={props.missing} />
             <Menu.Item>
               <Input icon='search' transparent placeholder='Search...' />
