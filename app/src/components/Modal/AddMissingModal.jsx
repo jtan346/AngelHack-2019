@@ -46,10 +46,10 @@ const AddMissingModal = props => {
 
       //on success upload files
       const filepath = 'username/missingpersonid/image2.png';
-      // const file = await Storage.put(filepath, upload.file, {
-      //   contentType: 'image/png'
-      // });
-      // console.log(file);
+      const file = await Storage.put(filepath, upload.file, {
+        contentType: 'image/png'
+      });
+      console.log(file);
     } catch (error) {
       console.log(error);
     }
