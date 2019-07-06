@@ -27,6 +27,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['angelhackfmb.mybluemix.net','0.0.0.0','127.0.0.1']
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
 
 # Application definition
 
