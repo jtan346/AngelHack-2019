@@ -48,7 +48,13 @@ const App: React.FC = () => {
 
   return (
     <div className='App'>
-      <Header found={openFoundHandler} missing={openMissingHandler} login={openLoginHandler} register={openRegisterHandler} user={user} />
+      <Header
+        found={openFoundHandler}
+        missing={openMissingHandler}
+        login={openLoginHandler}
+        register={openRegisterHandler}
+        user={user}
+      />
       <Router>
         <Switch>
           <Route path='/' exact render={() => <Homepage />} />

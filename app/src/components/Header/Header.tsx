@@ -27,7 +27,7 @@ const HeaderComponent: React.SFC<IProps> = (props: IProps) => {
     { key: 'sign-out', text: 'Sign Out' }
   ];
 
-  const isLoggedIn = document.cookie.includes('token') ? true : true;
+  const isLoggedIn = document.cookie.includes('token') ? true : false;
 
   return (
     <header>
@@ -37,7 +37,7 @@ const HeaderComponent: React.SFC<IProps> = (props: IProps) => {
           <Notifications />
           <Menu.Menu position='right'>
             <Menu.Item name='Add Found Person' onClick={props.found} />
-            <Menu.Item name='Add Missing Person' onClick={props.missing} />
+            <Menu.Item name='Update Profile' onClick={props.missing} />
             <Menu.Item>
               <Input icon='search' transparent placeholder='Search...' />
             </Menu.Item>

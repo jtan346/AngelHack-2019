@@ -9,9 +9,6 @@ interface IProps extends React.Props<{}> {
   onClose: () => void;
   missingPersonImage?: string;
   foundPersonImage?: string;
-  foundPersonDescription?: string;
-  finderName?: string;
-  finderContact?: string;
 }
 
 const VerificationModal: React.SFC<IProps> = (props: IProps) => {
@@ -27,7 +24,7 @@ const VerificationModal: React.SFC<IProps> = (props: IProps) => {
   };
   return (
     <Modal size='large' open={props.isOpen} onClose={props.onClose} closeOnDimmerClick={true} closeOnEscape={true}>
-      <Modal.Header>Verify potential match</Modal.Header>
+      <Modal.Header>MATCH</Modal.Header>
       <Modal.Content>
         <div className='verification-imagebox'>
           <div className='verification-image-container'>
@@ -38,26 +35,9 @@ const VerificationModal: React.SFC<IProps> = (props: IProps) => {
           </div>
         </div>
         <br />
-        {accepted && (
-          <div className='verification-desc'>
-            <p>Contact Info: {props.finderContact}</p>
-            <p>Name: {props.finderName}</p>
-          </div>
-        )}
-        {!accepted && (
-          <>
-            <div className='verification-desc'>{props.foundPersonDescription}</div>
-            <br />
-            <Button.Group fluid>
-              <Button positive color='teal' size='huge' onClick={onAccept}>
-                Accept
-              </Button>
-              <Button negative color='teal' size='huge' onClick={onClose}>
-                Reject
-              </Button>
-            </Button.Group>
-          </>
-        )}
+        <div className='verification-desc'>
+          <p>The emergency has been notified and will contact you.</p>
+        </div>
       </Modal.Content>
     </Modal>
   );
