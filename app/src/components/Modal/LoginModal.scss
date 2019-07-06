@@ -1,0 +1,20 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+.ui.form {
+  width: 70vw;
+}
+
+@include medium {
+  .ui.form {
+    width: 40vw;
+  }
+}
+
+.ui.modal {
+  width: auto;
+}
+
+.ui.input {
+  width: 100%;
+}

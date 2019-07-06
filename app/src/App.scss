@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+}
+
+.App > div {
+  padding-top: 6em;
+}
