@@ -12,11 +12,12 @@ class InsuredUser(models.Model):
           MinValueValidator(80000000)
       ]
     )
-    status = models.CharField(max_length=50, null=True, blank=True)
+    status = models.CharField(max_length=50, null=True, blank=True) #insurance active? Active : Inactive
     nok = models.CharField(max_length=50, null=True, blank=True)
     nokcontact = models.CharField(max_length=50, null=True, blank=True)
+    nokactivated = models.CharField(max_length=50, null=True, blank=True) #nok report missing? Active : Inactive
     location = models.CharField(max_length=50, null=True, blank=True)
-
+    picurl = models.TextField(null=True, blank=True)
 
 class CommonUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -30,8 +31,10 @@ class CommonUser(models.Model):
     numfound = models.CharField(max_length=50, null=True, blank=True)
 
 class Submission(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=50, null=True, blank=True)
+    description = models.CharField(max_length=50, null=True, blank=True)
+    picurl = models.TextField(null=True, blank=True)
 
 
 
