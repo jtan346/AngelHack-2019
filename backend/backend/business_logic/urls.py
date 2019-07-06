@@ -9,9 +9,12 @@ urlpatterns = [
     path('login', views.loginview.as_view()),
     path('match', views.match),
     path('missingpersons', views.missing_person),
-    path('foundperson', views.found_person),
     path('notifications', views.notifications),
-    path('register', views.registerview.as_view()),
+
+    path('foundperson', views.matchSubmission.as_view()),
+    path('updateProfile', views.updateInsuredProfilePic.as_view()),
+
+    # path('register', views.registerview.as_view()),
     path('logout', views.logoutview.as_view()),
     path('test', views.testing),
 ]
