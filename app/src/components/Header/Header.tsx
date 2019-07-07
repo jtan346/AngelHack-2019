@@ -27,7 +27,7 @@ const HeaderComponent: React.SFC<IProps> = (props: IProps) => {
     { key: 'sign-out', text: 'Sign Out' }
   ];
 
-  const isLoggedIn = document.cookie.includes('token') ? true : false;
+  const isLoggedIn = document.cookie.includes('token') ? true : true;
 
   return (
     <header>
@@ -54,7 +54,7 @@ const HeaderComponent: React.SFC<IProps> = (props: IProps) => {
             </Menu.Item>
           </Menu.Menu>
         </Menu>
-       ) : (
+      ) : (
         <Menu fixed='top'>
           <Menu.Item className='title' name='Find My Buddy' />
           <Menu.Menu position='right'>

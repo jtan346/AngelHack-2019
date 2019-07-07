@@ -26,7 +26,12 @@ const getAllMissing = async (): Promise<any> => {
 const updateProfile = async (data: any): Promise<any> => {
   const endpoint = 'updateProfile'; // /updateProfile
   const token = document.cookie.replace('token=', '');
-  const response = await axios.post(urlBuilder(endpoint), { ...data, session_id: token }, { withCredentials: true });
+  const payload = token.split(',');
+  const response = await axios.post(
+    urlBuilder(endpoint),
+    { ...data, session_id: payload[0], csrf: payload[1] },
+    { withCredentials: true }
+  );
 
   if (response.status === 200) {
     return response.data;
@@ -38,7 +43,8 @@ const updateProfile = async (data: any): Promise<any> => {
 const addFoundPerson = async (data: any): Promise<any> => {
   const endpoint = 'foundperson'; // /foundperson
   const token = document.cookie.replace('token=', '');
-  const response = await axios.post(urlBuilder(endpoint), { ...data, session_id: token });
+  const payload = token.split(',');
+  const response = await axios.post(urlBuilder(endpoint), { ...data, session_id: payload[0], csrf: payload[1] });
 
   if (response.status === 200) {
     return response.data;
@@ -65,7 +71,8 @@ const login = async (data: any): Promise<any> => {
   });
 
   if (response.status === 200) {
-    document.cookie = `token=${response.data.session_id}`;
+    document.cookie = `token=${response.data.csrf},${response.data.session_id};`;
+
     return response.data;
   } else {
     return null;

@@ -40,17 +40,17 @@ const Homepage: React.SFC<{}> = () => {
         status: 'Missing',
         submitted: '6/25/2019 15:22'
       },
-      {
-        id: 2,
-        image:
-          'https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/public/missing/15624360594694550317863296543365.jpg',
-        name: 'Saklani',
-        age: 25,
-        contact: '81234567',
-        lastKnown: 'Bombay, India',
-        status: 'Missing',
-        submitted: '4/7/2016 07:20'
-      },
+      // {
+      //   id: 2,
+      //   image:
+      //     'https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/public/missing/15624360594694550317863296543365.jpg',
+      //   name: 'Saklani',
+      //   age: 25,
+      //   contact: '81234567',
+      //   lastKnown: 'Bombay, India',
+      //   status: 'Missing',
+      //   submitted: '4/7/2016 07:20'
+      // },
       {
         id: 3,
         image:
@@ -72,18 +72,18 @@ const Homepage: React.SFC<{}> = () => {
         lastKnown: 'Xingjiang, China',
         status: 'Missing',
         submitted: '6/2/2017 11:34'
-      },
-      {
-        id: 5,
-        image:
-          'https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/public/missing/15624358643934411481403951089680.jpg',
-        name: 'Benji',
-        age: 25,
-        contact: '81234567',
-        lastKnown: 'Singapore',
-        status: 'Missing',
-        submitted: '12/25/2011 15:22'
       }
+      // {
+      //   id: 5,
+      //   image:
+      //     'https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/public/missing/15624358643934411481403951089680.jpg',
+      //   name: 'Benji',
+      //   age: 25,
+      //   contact: '81234567',
+      //   lastKnown: 'Singapore',
+      //   status: 'Missing',
+      //   submitted: '12/25/2011 15:22'
+      // }
     ]);
   };
 
