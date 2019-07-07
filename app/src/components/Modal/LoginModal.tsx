@@ -39,7 +39,8 @@ const LoginModal: React.SFC<IProps> = (props: IProps) => {
 
     try {
       const response = await api.login(data);
-      document.cookie = 'token=republicofpankaj1994;';
+      // document.cookie = 'token=republicofpankaj1994;';
+      console.log(document.cookie);
       props.onClose();
     } catch (error) {
       console.log('err', error);

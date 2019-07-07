@@ -123,7 +123,7 @@ const Homepage: React.SFC<{}> = () => {
               <h2 className='title'>Missing People Bulletin</h2>
               <div className='filter'>
                 <Icon name='filter' />
-                Showing <Dropdown downward floating inline options={options} defaultValue='All' /> Posts
+                Showing <Dropdown downward='true' floating inline options={options} defaultValue='All' /> Posts
               </div>
             </div>
             <div className='personcard-collection'>{persons}</div>

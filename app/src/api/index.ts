@@ -1,6 +1,7 @@
 import axios from 'axios';
 //process.env.REACT_APP_API_URL
-const BASE_URL: string = 'https://jsonplaceholder.typicode.com';
+//axios.defaults.withCredentials = true;
+const BASE_URL: string = 'https://angelhackfmb.mybluemix.net';
 const urlBuilder = (path: string): string => {
   if (path.charAt(0) === '/') {
     return BASE_URL + path;
@@ -9,7 +10,7 @@ const urlBuilder = (path: string): string => {
 };
 
 const getAllMissing = async (): Promise<any> => {
-  const endpoint = '/posts'; // /missingpersons
+  const endpoint = 'missingpersons'; // /missingpersons
   const response = await axios.get(urlBuilder(endpoint));
 
   if (response.status === 200) {
@@ -20,7 +21,7 @@ const getAllMissing = async (): Promise<any> => {
 };
 
 const updateProfile = async (data: any): Promise<any> => {
-  const endpoint = '/posts'; // /updateProfile
+  const endpoint = 'updateProfile'; // /updateProfile
   const response = await axios.post(urlBuilder(endpoint), data);
 
   if (response.status === 200) {
@@ -31,7 +32,7 @@ const updateProfile = async (data: any): Promise<any> => {
 };
 
 const addFoundPerson = async (): Promise<any> => {
-  const endpoint = '/posts'; // /foundperson
+  const endpoint = 'foundperson'; // /foundperson
   const response = await axios.post(urlBuilder(endpoint));
 
   if (response.status === 200) {
@@ -42,7 +43,7 @@ const addFoundPerson = async (): Promise<any> => {
 };
 
 const registerUser = async (data: any): Promise<any> => {
-  const endpoint = '/user/register';
+  const endpoint = 'user/register';
   const response = await axios.post(urlBuilder(endpoint), data);
   console.log(response);
   if (response.status === 200) {
@@ -53,8 +54,13 @@ const registerUser = async (data: any): Promise<any> => {
 };
 
 const login = async (data: any): Promise<any> => {
-  const endpoint = '/posts'; // /login
-  const response = await axios.post(urlBuilder(endpoint), data);
+  // const endpoint = 'login'; // /login
+  const endpoint = 'login';
+  const response = await axios.post(urlBuilder(endpoint), data, {
+    withCredentials: true,
+  });
+
+  console.log(response);
 
   if (response.status === 200) {
     return response.data;
