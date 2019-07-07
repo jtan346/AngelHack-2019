@@ -31,7 +31,7 @@ class CommonUser(models.Model):
     numfound = models.CharField(max_length=50, null=True, blank=True)
 
 class Submission(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CommonUser, on_delete=models.CASCADE)
     location = models.CharField(max_length=50, null=True, blank=True)
     description = models.CharField(max_length=50, null=True, blank=True)
     picurl = models.TextField(null=True, blank=True)

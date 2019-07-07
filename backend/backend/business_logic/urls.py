@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 app_name = 'business_logic'
@@ -8,7 +8,7 @@ app_name = 'business_logic'
 urlpatterns = [
     path('login', views.loginview.as_view()),
     path('match', views.match),
-    path('missingpersons', views.missing_person),
+    path('missingpersons', views.missing_persons.as_view()),
     path('notifications', views.notifications),
 
     path('foundperson', views.matchSubmission.as_view()),
