@@ -10,6 +10,10 @@
 
 .verification-image {
   margin: auto;
+  width: 300px;
+  height: 300px !important;
+  transform: rotate(90deg);
+  object-fit: cover;
 }
 
 .verification-desc {

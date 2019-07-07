@@ -61,10 +61,11 @@ const AddFoundModal = props => {
       } catch (err) {}
 
       response = {
-        match: 'true',
+        match: 'false',
         missingPersonImage:
           'https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/public/missing/15624359068686769426589858910801.jpg',
-        foundPersonImage: 'https://react.semantic-ui.com/images/avatar/large/elliot.jpg'
+        foundPersonImage:
+          'https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/public/found/15624711088381936082809739449171.jpg'
       };
 
       //if successful open handler
