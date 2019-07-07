@@ -25,7 +25,7 @@ const MobileSidebar: React.SFC<MobileProps> = (props: MobileProps) => {
     <Sidebar as={Menu} animation='overlay' icon='labeled' onHide={props.hide} vertical visible={props.visible}>
       <Menu.Item>FindMyBuddy</Menu.Item>
 
-      <Menu.Item onClick={props.missing}>Add Missing Person</Menu.Item>
+      <Menu.Item onClick={props.missing}>Update Profile</Menu.Item>
 
       <Menu.Item onClick={props.found}>Add Found Person</Menu.Item>
     </Sidebar>
