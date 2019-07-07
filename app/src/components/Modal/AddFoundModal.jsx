@@ -61,7 +61,7 @@ const AddFoundModal = props => {
       } catch (err) {}
 
       response = {
-        match: 'true',
+        match: 'false',
         missingPersonImage: 'https://react.semantic-ui.com/images/avatar/large/elliot.jpg',
         foundPersonImage: 'https://react.semantic-ui.com/images/avatar/large/elliot.jpg'
       };

@@ -1,9 +1,18 @@
 @import '../../assets/styles/mixins';
 @import '../../assets/styles/variables';
 
+.rotate90 {
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+}
 .personcard-collection {
   display: flex;
   flex-wrap: wrap;
+}
+
+.image {
+  padding-top: 100px !important;
+  margin-left: 50px;
 }
 
 .ui.card:first-child {
@@ -17,10 +26,6 @@
   margin: 1em;
   cursor: pointer;
   width: calc(100% - 2em);
-}
-
-.ui.card:hover {
-  padding: .5em;
 }
 
 //Default is mobile, use this tag for desktop specific stuff

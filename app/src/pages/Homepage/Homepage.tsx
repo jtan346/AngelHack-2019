@@ -23,13 +23,16 @@ const Homepage: React.SFC<{}> = () => {
     fetchData();
   }, []);
   const fetchData = async () => {
-    const response = await api.getAllMissing(); //dummy api for now
-    console.log(response);
+    try {
+      const response = await api.getAllMissing(); //dummy api for now
+      console.log(response);
+    } catch (e) {}
     // if(response){}
     setPersonsState([
       {
         id: 1,
-        image: 'https://react.semantic-ui.com/images/avatar/large/elliot.jpg',
+        image:
+          'https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/public/missing/15624358227424991737201046222595.jpg',
         name: 'Seng Cheong',
         age: 25,
         contact: '81234567',
@@ -39,7 +42,8 @@ const Homepage: React.SFC<{}> = () => {
       },
       {
         id: 2,
-        image: 'https://semantic-ui.com/images/avatar2/large/matthew.png',
+        image:
+          'https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/public/missing/15624360594694550317863296543365.jpg',
         name: 'Saklani',
         age: 25,
         contact: '81234567',
@@ -49,7 +53,8 @@ const Homepage: React.SFC<{}> = () => {
       },
       {
         id: 3,
-        image: 'https://semantic-ui.com/images/avatar2/large/elyse.png',
+        image:
+          'https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/public/missing/15624359068686769426589858910801.jpg',
         name: 'Daniel',
         age: 25,
         contact: '81234567',
@@ -59,7 +64,8 @@ const Homepage: React.SFC<{}> = () => {
       },
       {
         id: 4,
-        image: 'https://react.semantic-ui.com/images/avatar/large/daniel.jpg',
+        image:
+          'https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/public/missing/15624360193214926059653773792687.jpg',
         name: 'Yong Wei',
         age: 25,
         contact: '81234567',
@@ -69,7 +75,8 @@ const Homepage: React.SFC<{}> = () => {
       },
       {
         id: 5,
-        image: 'https://react.semantic-ui.com/images/avatar/large/steve.jpg',
+        image:
+          'https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/public/missing/15624358643934411481403951089680.jpg',
         name: 'Benji',
         age: 25,
         contact: '81234567',

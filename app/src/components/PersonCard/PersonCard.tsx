@@ -17,8 +17,7 @@ interface IProps extends React.Props<{}> {
 const PersonCard: React.SFC<IProps> = (props: IProps) => {
   return (
     <Card className='personcard'>
-
-      <Image src={props.image} wrapped ui={false} />
+      <Image src={props.image} wrapped ui={false} className='rotate90' />
       <Card.Content>
         <Card.Header>
           {props.name}, {props.age}
@@ -30,9 +29,7 @@ const PersonCard: React.SFC<IProps> = (props: IProps) => {
           Contact: {props.contact}
         </Card.Description>
       </Card.Content>
-      <Card.Content extra>
-        Submitted: {props.submitted}
-      </Card.Content>
+      <Card.Content extra>Submitted: {props.submitted}</Card.Content>
     </Card>
   );
 };
