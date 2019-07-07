@@ -61,7 +61,7 @@ const AddFoundModal = props => {
       } catch (err) {}
 
       response = {
-        match: 'false',
+        match: 'true',
         missingPersonImage:
           'https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/public/missing/15624359068686769426589858910801.jpg',
         foundPersonImage:
