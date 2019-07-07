@@ -1,6 +1,6 @@
 import axios from 'axios';
 //process.env.REACT_APP_API_URL
-//axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 const BASE_URL: string = 'https://angelhackfmb.mybluemix.net';
 const urlBuilder = (path: string): string => {
   if (path.charAt(0) === '/') {
@@ -22,7 +22,7 @@ const getAllMissing = async (): Promise<any> => {
 
 const updateProfile = async (data: any): Promise<any> => {
   const endpoint = 'updateProfile'; // /updateProfile
-  const response = await axios.post(urlBuilder(endpoint), data);
+  const response = await axios.post(urlBuilder(endpoint), data, {withCredentials: true});
 
   if (response.status === 200) {
     return response.data;
@@ -63,6 +63,7 @@ const login = async (data: any): Promise<any> => {
   console.log(response);
 
   if (response.status === 200) {
+    document.cookie = `token=${response.data.session_id}`;
     return response.data;
   } else {
     return null;
