@@ -47,6 +47,7 @@ const AddMissingModal = props => {
       });
 
       //send to server
+
       await api.updateProfile({
         image: `public/${filepath}`
       });

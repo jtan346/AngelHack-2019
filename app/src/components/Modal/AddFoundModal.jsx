@@ -50,17 +50,22 @@ const AddFoundModal = props => {
       });
 
       //send to server
-      let response = await api.updateProfile({
-        image: `public/${filepath}`,
-        description: form.getField(DESC).value,
-        location: form.getField(LOCATION).value
-      });
+      // const token = document.cookie.replace('token=','')
+      let response;
+      try {
+        response = await api.updateProfile({
+          image: `public/${filepath}`,
+          description: form.getField(DESC).value,
+          location: form.getField(LOCATION).value
+        });
+      } catch (err) {}
 
       response = {
         match: 'true',
         missingPersonImage: 'https://react.semantic-ui.com/images/avatar/large/elliot.jpg',
         foundPersonImage: 'https://react.semantic-ui.com/images/avatar/large/elliot.jpg'
       };
+
       //if successful open handler
       if (response.match === 'true') {
         let notification = {
@@ -68,6 +73,8 @@ const AddFoundModal = props => {
           foundPersonImage: response.foundPersonImage
         };
         openVerificationHandler(notification);
+      } else {
+        openVerificationHandler(undefined);
       }
 
       props.onClose();

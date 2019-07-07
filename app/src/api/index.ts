@@ -1,7 +1,8 @@
 import axios from 'axios';
 //process.env.REACT_APP_API_URL
-axios.defaults.withCredentials = true;
-const BASE_URL: string = 'https://angelhackfmb.mybluemix.net';
+// axios.defaults.withCredentials = true;
+
+const BASE_URL: string = 'http://angelhackfmb.mybluemix.net';
 const urlBuilder = (path: string): string => {
   if (path.charAt(0) === '/') {
     return BASE_URL + path;
@@ -10,7 +11,9 @@ const urlBuilder = (path: string): string => {
 };
 
 const getAllMissing = async (): Promise<any> => {
-  const endpoint = 'missingpersons'; // /missingpersons
+  const token = document.cookie.replace('token=', '');
+  const endpoint = `missingpersons?session_id=${token}`; // /missingpersons
+
   const response = await axios.get(urlBuilder(endpoint));
 
   if (response.status === 200) {
@@ -22,7 +25,8 @@ const getAllMissing = async (): Promise<any> => {
 
 const updateProfile = async (data: any): Promise<any> => {
   const endpoint = 'updateProfile'; // /updateProfile
-  const response = await axios.post(urlBuilder(endpoint), data, {withCredentials: true});
+  const token = document.cookie.replace('token=', '');
+  const response = await axios.post(urlBuilder(endpoint), { ...data, session_id: token }, { withCredentials: true });
 
   if (response.status === 200) {
     return response.data;
@@ -31,9 +35,10 @@ const updateProfile = async (data: any): Promise<any> => {
   }
 };
 
-const addFoundPerson = async (): Promise<any> => {
+const addFoundPerson = async (data: any): Promise<any> => {
   const endpoint = 'foundperson'; // /foundperson
-  const response = await axios.post(urlBuilder(endpoint));
+  const token = document.cookie.replace('token=', '');
+  const response = await axios.post(urlBuilder(endpoint), { ...data, session_id: token });
 
   if (response.status === 200) {
     return response.data;
@@ -54,13 +59,10 @@ const registerUser = async (data: any): Promise<any> => {
 };
 
 const login = async (data: any): Promise<any> => {
-  // const endpoint = 'login'; // /login
   const endpoint = 'login';
   const response = await axios.post(urlBuilder(endpoint), data, {
-    withCredentials: true,
+    withCredentials: true
   });
-
-  console.log(response);
 
   if (response.status === 200) {
     document.cookie = `token=${response.data.session_id}`;
