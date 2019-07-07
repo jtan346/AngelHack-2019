@@ -4,15 +4,15 @@
 .rotate90 {
   transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
+  margin: 17% -15%;
 }
 .personcard-collection {
   display: flex;
   flex-wrap: wrap;
 }
 
-.image {
-  padding-top: 100px !important;
-  margin-left: 50px;
+.image-container {
+
 }
 
 .ui.card:first-child {
