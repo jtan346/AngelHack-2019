@@ -53,19 +53,20 @@ const AddFoundModal = props => {
       // const token = document.cookie.replace('token=','')
       let response;
       try {
-        response = await api.updateProfile({
+        response = await api.addFoundPerson({
           image: `public/${filepath}`,
           description: form.getField(DESC).value,
           location: form.getField(LOCATION).value
         });
+        console.log(response);
       } catch (err) {}
 
       response = {
         match: 'true',
         missingPersonImage:
-          'https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/public/missing/15624359068686769426589858910801.jpg',
+          `https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/${response.missingPersonImage}`,
         foundPersonImage:
-          'https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/public/found/15624711088381936082809739449171.jpg'
+          `https://angelhackimages-dev.s3-ap-southeast-1.amazonaws.com/${response.foundPersonImage}`
       };
 
       //if successful open handler
