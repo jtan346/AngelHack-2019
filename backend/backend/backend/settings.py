@@ -25,14 +25,14 @@ SECRET_KEY = 'i3sy39m%_!cx5mp=0f%#h^wkge)3tn32aur!4#ad7ngg@%z1v7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['angelhackfmb.mybluemix.net','0.0.0.0','127.0.0.1']
+ALLOWED_HOSTS = ['angelhackfmb.mybluemix.net','0.0.0.0:80','127.0.0.1','localhost']
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+
     )
 }
 
@@ -92,10 +92,24 @@ CORS_ALLOW_HEADERS = [
     'user-agent',
     'x-csrftoken',
     'x-requested-with',
+    'x-pingother'
 ]
 
-WSGI_APPLICATION = 'backend.wsgi.application'
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
 
+CORS_ALLOW_CREDENTIALS = True
+CRSF_COOKIE_SAMESITE = None
+SESSION_COOKIE_SAMESITE = None
+SESSION_COOKIE_HTTPONLY = False
+
+WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

@@ -7,13 +7,17 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.views.decorators.csrf import csrf_exempt
 
+#import django.middleware.csrf
 import boto3
 
 this_region = 'ap-southeast-1'
 rekognition = boto3.client('rekognition', this_region)
 
 class loginview(APIView):
+    authentication_classes = []
+
     def post(self, request):
         response_data = {}
         username = request.data['username']
@@ -22,11 +26,20 @@ class loginview(APIView):
         if user is not None:
             if user.is_active:
                 login(request, user)
+                print("login")
                 response_data["Authenticated"] = True
-                return Response(response_data, status=status.HTTP_200_OK)
+                response_data["session_id"] = username
+                #response_data["csrf_token"] = django.middleware.csrf.get_token(request)
+
+                res = Response(response_data, status=status.HTTP_200_OK)
+                return res
         else:
             response_data["Authenticated"] = False
             return Response(response_data, status=status.HTTP_400_BAD_REQUEST)
+
+    def options(selfs, request):
+        response=Response(status=status.HTTP_204_NO_CONTENT)
+        return response
 
 # class registerview(APIView):
 #     def get(self, request):
@@ -52,6 +65,7 @@ class loginview(APIView):
 #             return Response("Created", status=status.HTTP_200_OK)
 
 class logoutview(APIView):
+    authentication_classes = []
     def get(self, request, format=None):
         logout(request)
         return redirect('api-auth/logout')
@@ -59,14 +73,16 @@ class logoutview(APIView):
 
 #Need to ensure logged in by Insured User
 class updateInsuredProfilePic(APIView):
+    authentication_classes = []
+    @csrf_exempt
     def post(self, request):
         response_data = {}
 
-        curuser = request.user
-
+        #curuser = request.data['session_id']
+        curuser = User.objects.get(username='sengcheong')
         #Assume always Insured User
         account = InsuredUser.objects.get(user=curuser)
-        newPicture = request.data['picurl']
+        newPicture = request.data['image']
 
         #retrieve from s3
         account.picurl=newPicture
@@ -78,15 +94,18 @@ class updateInsuredProfilePic(APIView):
 
 #Need to ensure logged in by Common User
 class matchSubmission(APIView):
+    authentication_classes = []
     def post(self, request):
         response_data = {}
 
-        curuser = request.user
+        # curuser = request.data['session_id']
+        curuser = User.objects.get(username='danielkhoo')
+        comuser = CommonUser.objects.get(user=curuser)
         location = request.data['location']
         description = request.data['description']
-        picurl = request.data['picurl']
+        picurl = request.data['image']
 
-        submission = Submission(user=curuser, location=location, description=description, picurl=picurl)
+        submission = Submission(user=comuser, location=location, description=description, picurl=picurl)
         submission.save()
 
         #Matching
@@ -94,7 +113,7 @@ class matchSubmission(APIView):
         allInsuredUsers = InsuredUser.objects.all()
 
         print(picurl)
-
+        print(allInsuredUsers)
         for iuser in allInsuredUsers:
             iuserpic = iuser.picurl
             result = self.findmatch(iuserpic, picurl)
@@ -103,13 +122,14 @@ class matchSubmission(APIView):
 
         found.sort(key=lambda e: e[1], reverse=True)
         #sort by highest similarity, get the highest similarity entry
-
+        print(found)
         if found is not None:
-            response_data["Match"] = True
-            response_data["missingImage"] = found[0][0].picurl
+            response_data["match"] = True
+            response_data["missingPersonImage"] = found[0][0].picurl
+            response_data["foundPersonImage"] = picurl
             return Response(response_data, status=status.HTTP_200_OK)
         else:
-            response_data["Match"] = False
+            response_data["match"] = False
             return Response(response_data, status=status.HTTP_200_OK)
 
     #SC: public/missing/15624358472572042379873501463203.jpg
@@ -135,7 +155,7 @@ class matchSubmission(APIView):
                 },
             },
         )
-
+        print(response)
         print(response['FaceMatches'][0]['Similarity'])
         if float(response['FaceMatches'][0]['Similarity']) > 70:
             return (True, response['FaceMatches'][0]['Similarity'])
@@ -151,8 +171,9 @@ class matchSubmission(APIView):
 
 
 
-def missing_person(request):
-    pass
+class missing_persons(APIView):
+    def get(self):
+        pass
 
 def found_person(request):
     pass
