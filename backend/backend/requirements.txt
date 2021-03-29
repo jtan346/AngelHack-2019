@@ -18,7 +18,7 @@ httpie==1.0.2
 idna==2.8
 Markdown==3.1.1
 pyasn1==0.4.5
-Pygments==2.4.2
+Pygments==2.7.4
 PyYAML==5.1
 python-dateutil==2.8.0
 pytz==2019.1
